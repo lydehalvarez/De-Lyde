@@ -1,1 +1,0 @@
-{"result":-1,"message":"Intente de nuevo, se generó un nuevo token para transacción","code":401,"data":null}
