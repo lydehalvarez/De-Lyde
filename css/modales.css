@@ -1,0 +1,104 @@
+body {
+	font-family:Lucida Bright, Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font-size:100%;
+	background-color: #FFF;
+}
+
+#contenido .columna-1{ width:282px;}
+#contenido .columna-2{
+	width:750px;
+}
+#CajaDeslizante{
+	width:850px;
+	margin-left:15px;
+	overflow-x:hidden; overflow-y:scroll;
+	height: 450px;
+	position: absolute;
+}
+
+#CajaDos{ position: absolute; top: 20px; left: 85px; width: 499px; 
+overflow-y: scroll;
+overflow-x: hidden;
+padding-right: 5px;
+visibility: visible;
+border: thin solid white; 
+background-color: #336699; 
+scrollbar-face-color: #336699; scrollbar-3dlight-color: #336699; scrollbar-base-color: #336699; 
+scrollbar-track-color: #336699; scrollbar-darkshadow-color: #000; scrollbar-arrow-color: #000; 
+scrollbar-shadow-color: #fff; scrollbar-highlight-color: #fff; 
+} 
+
+.limpio{ width:100%;}
+.title-abajo{
+	padding-bottom:18px !important;
+	font-size: 36px;
+	color: #FFF;
+}
+
+/*******************row-list***********************/
+.renglon-lista{color: #000;}
+.renglon-lista .lista-indent{ margin-left:47px;}
+
+.lista1 li{
+	line-height:17px;
+	padding-bottom:6px;
+	color: #000;
+}
+.lista1 li a{
+	background:url(/Template/TuBien/img/content_marker.gif) 0 4px no-repeat;
+	padding:0 0 0 12px;
+	color:#000;
+	font-size:14px;
+	line-height:17px;
+	text-decoration:none;
+}
+.lista1 li a:hover{ color:#e6700b; background:url(/Template/TuBien/img/content_marker.gif) 1px 4px no-repeat;}
+.row-lista-indent{ padding:15px 0;}
+.row-lista-indent1{ padding:18px 0;}
+
+.lista1-top-bottom{ padding:15px 0 15px 0;}
+.img-bottom{ margin-bottom:13px;}
+.indent-top{ margin:15px 0 0 0;}
+
+/*********************************content*************************************/
+#contenido{
+	padding:0 0 0 5px;
+	letter-spacing:-1px;
+
+}
+#contenido .texto2{
+	color:#000 !important;
+	line-height:24px !important;
+	text-align:justify;
+	display:block;
+}
+#contenido .texto1{ color:#e6700b  !important; font-style:italic; display:block; text-align:right; font-size:14px !important;}
+.title-abajo{ padding-bottom:18px !important;}
+
+
+
+/*******************content-text*******************/
+#contenido h3{
+	color:#000;
+	font-size:30px;
+	line-height:30px;
+	padding:18px 0 25px 0;
+	letter-spacing:1px;
+}
+#Logo-Modal {
+	position: absolute;
+	top: 14px;
+	right: 38px;
+} 
+
+.text3{ color:#e6700b;}
+
+.contenido{ padding:44px 0 34px 0;}
+.contenido div{ text-align:justify;}
+.texto-extra{
+	color:#000;
+	font-size:17px;
+	line-height:30px;
+	padding:0 0 29px 0;
+	display:block;
+}

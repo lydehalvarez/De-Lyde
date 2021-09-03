@@ -1,0 +1,55 @@
+
+
+
+.iqClear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+
+.iqFicha {
+ /* background: #fff;
+  margin-bottom: 50px; */
+	
+}
+
+.iqFicha .RenglonDeControles {
+		line-height: 28px;
+		display:inline;
+		margin-bottom:10px;
+}
+
+.iqFicha .RenglonDeControles #areafunciones {
+		/*background: #fff;*/	
+		float:left;
+	}
+	
+.iqFicha .RenglonDeControles .AccionesDelFormulario {
+		/*background: #fff;*/	
+		float:right;
+	}
+
+
+.iqFicha fieldset {
+	font-family: Raleway, Arial, Tahoma, sans-serif;
+	/*border: 1px solid #4e88a1;*/
+	font-size: 14px;
+	line-height: 18px;	
+}	
+
+.iqFicha legend {
+	font-size: 22px;
+	line-height: 28px;
+	color:#4e88a1;
+	font-weight: 700;
+}	
+
+
+.iqFicha .columna { float: left; display: inline; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; }
+.columna.Titulo { margin-left: 5px; font-weight: 400;}
+.columna.Informacion { margin-left: 5px; }
+

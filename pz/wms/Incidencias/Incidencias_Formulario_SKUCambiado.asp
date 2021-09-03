@@ -86,7 +86,7 @@
             			<label class="control-label col-md-3"><strong>Folio de transferencia</strong></label>
                        <div class="col-md-9">
 					   		<% /* HA ID: 2 se agrega identificador a input y se quita evento keydown */ %>
-                            <input class="form-control TA_Folio" id="inpInsTA_Folio" value = "" placeholder=""   <% if( Ins_ID > -1 ) { %> disabled <% } %> style="width: 120px;float: left;"></input>
+                            <input class="form-control TA_Folio" id="inpInsTA_Folio" value = "" placeholder=""   style="width: 120px;float: left;"></input>
             			<label class="control-label col-md-6"><small><strong>Ingresar y presionar enter</strong></small></label>
 
                        </div>
@@ -182,26 +182,22 @@
 
 		}
 	}	
-	
-	var FunctionInsert = {
-		InsertDatos:function(){
-			var Folio = $('.TA_Folio').val()
-			var Descripcion = $('.Descripcion').val()
-			var Asignar = $('#selAsignar').val()
+   			var FunctionInsert = {
+			InsertDatos:function(){
+				var Folio = $('.TA_Folio').val()
+				var Descripcion = $('.Descripcion').val()
+			   	var Asignar = $('#selAsignar').val()
 	
 			if(Folio != '' && Descripcion != '' && Asignar !=-1){
-
-				var InsT_ID = parseInt($('.InsT_IDPadre').val());
-				
 				$('#divValidaCampos').hide()
 
 				var Titulo = "";
 					
 				switch( parseInt(InsT_ID) ){
-					case 27: { Titulo = "Diferencias en Remision" } break;
-					case 29: { Titulo = "Diferencias en Remision" } break;
+					case 27: { Titulo = "SKU Cambiado" } break;
+					case 29: { Titulo = "SKU Faltante" } break;
 					case 30: { Titulo = "Entrega Parcial" } break;
-					case 40: { Titulo = "Siniestro Parcial" } break;
+					case 40: { Titulo = "Siniestro Pacial" } break;
 					case 39: { Titulo = "Siniestro Total" } break;
 				}
 
@@ -220,11 +216,11 @@
 
 				<% /* HA ID: 2 FIN */ %>
 
-				$.ajax({
-   				 	method: "POST",
-  				  	url: "/pz/wms/Incidencias/Incidencias_Ajax2.asp",
- 	   				data: { 
-						   Ins_Titulo:Titulo,
+		$.ajax({
+   				 method: "POST",
+  				  url: "/pz/wms/Incidencias/Incidencias_Ajax2.asp",
+ 	   data: { 
+							Ins_Titulo:Titulo,
 		   				   SKUCambiado:1,
 	   					   InsT_ID:$('.InsT_IDPadre').val(),
 						   InsO_ID:$('#cboInsO_ID').val(),
@@ -234,67 +230,66 @@
 						   Ins_Descripcion:encodeURIComponent($('.Descripcion').val()),
 						   Ins_Usu_Reporta: $('#IDUsuario').val(),
 						   Tarea:17
-					},
-    				cache: false,
-					//async: false    SE OCUPA PARA EVITAR REPETICIONES DE INSERCIONES 
-					success: function(data){
-						var resp = JSON.parse(data)
-						
-						console.log("resp:", resp)
+		},
+    cache: false,
+	//async: false    SE OCUPA PARA EVITAR REPETICIONES DE INSERCIONES 
+    success: function(data){
+							var resp = JSON.parse(data)
+							
+							console.log("resp:", resp)
 
-						var intErrorNumero = resp.Error.Numero;
-						var strErrorDescripcion = resp.Error.Descripcion;
-						var intIns_ID = resp.Registro.Ins_ID;
-						var intTA_ID = resp.Registro.TA_ID;
+							var intErrorNumero = resp.Error.Numero;
+							var strErrorDescripcion = resp.Error.Descripcion;
+							var intIns_ID = resp.Registro.Ins_ID;
+							var intTA_ID = resp.Registro.TA_ID;
 
-						if(intErrorNumero == 0){
+							if(intErrorNumero == 0){
 
 					<% /* HA ID: 2 INI Insertar o Actualizar Series */ %>
 
-							if( InsT_ID == 27 /* SKU Cambiado */ || InsT_ID == 29 /* SKU Faltante */ 
-								|| InsT_ID == 30 /* Entregas Parciales */ || InsT_ID == 40 /* Siniestros Parciales */ ){
+								if( InsT_ID == 27 /* SKU Cambiado */ || InsT_ID == 29 /* SKU Faltante */ 
+									|| InsT_ID == 30 /* Entregas Parciales */ || InsT_ID == 40 /* Siniestros Parciales */ ){
 
-								Serie.Listado.Seleccion.Guardar({
-										Ins_ID: intIns_ID
-										, TA_ID: intTA_ID
-										, IDUsuario: $("#IDUsuario").val()
-									} 
-									, function(){
-										Avisa("success", "Aviso", strErrorDescripcion);
-										$("#divPadre").show()
-										$("#mdlIncidencias").modal('hide').remove();
+									Serie.Listado.Seleccion.Guardar({
+											Ins_ID: intIns_ID
+											, TA_ID: intTA_ID
+											, IDUsuario: $("#IDUsuario").val()
+										}
+										, function(){
+											Avisa("success", "Aviso", strErrorDescripcion);
+											$("#divPadre").show()
+											$("#mdlIncidencias").modal('hide').remove();
 
-										var Params = "?IDUsuario="+$('#IDUsuario').val()
-										
-										$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
-									}
-								);
+											var Params = "?IDUsuario="+$('#IDUsuario').val()
+											
+											$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
+										}
+									);
 
-							} else {
-								
-								Avisa("success", "Aviso", strErrorDescripcion);
-								$("#divPadre").show()
-								$("#mdlIncidencias").modal('hide').remove();
+								} else {
+									
+									Avisa("success", "Aviso", strErrorDescripcion);
+									$("#divPadre").show()
+									$("#mdlIncidencias").modal('hide').remove();
 
-								var Params = "?IDUsuario="+$('#IDUsuario').val()
-								
-								$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params);
-							}
+									var Params = "?IDUsuario="+$('#IDUsuario').val()
+									
+									$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
+								}
 
 					<% /* HA ID: 2 FIN */ %>
 
-  	   					} else {
-							$('#divValidaCampos').show()
-							$('#divValidaCampos').html("<font color='#FF0000'>* El folio no existe</font>")
-						}
-					}
-				});	
-
-			} else {
+  	    }else{
+		$('#divValidaCampos').show()
+		$('#divValidaCampos').html("<font color='#FF0000'>* El folio no existe</font>")
+		}
+	}
+		});	
+		}else{
 				$('#divValidaCampos').show()
 				$('#divValidaCampos').html("<font color='#FF0000'>* Los campos asignar a, t&iacute;tulo, asunto, descripci&oacute;n y folio son requeridos</font>")	
-			}
-		}, 
+		}
+			}, 
 		AgregarSKU:function(proid, taid){
 			if($('.ChkSKU'+proid).is(':checked')){
 			var ChkSKU =1
@@ -327,24 +322,22 @@
                 }
             });
 		}, 
-		ActualizaDatos:function(){
-			var Folio = $('.TA_Folio').val()
-			var Tienda= $('.Tienda').val()
-			var Descripcion = $('.Descripcion').val()
-<%
-	if(Ins_Proveedor>-1){
-%>
+				ActualizaDatos:function(){
+				var Folio = $('.TA_Folio').val()
+				var Tienda= $('.Tienda').val()
+				var Descripcion = $('.Descripcion').val()
+			   	 <%
+					 if(Ins_Proveedor>-1){
+		  		%>
 				var Asignar = $('#selAsignarProv').val()
-<% 
-	}else{
-%>
+			<% 
+			 }else{
+			 	%>
 				var Asignar = $('.selAsignar').val()
-<% 
-	}
-%>
+				<% 
+	 		}
+	 	%>
 			if(Folio != ''  && Descripcion != '' && Asignar !=-1){
-				var InsT_ID = parseInt($('.InsT_IDPadre').val());
-
 				$('#divValidaCampos').hide()
 
 				<% /* HA ID: 2 INI se agrega paramentros para inserción */ %>
@@ -352,10 +345,10 @@
 				var Titulo = "";
 				
 				switch( parseInt(InsT_ID) ){
-					case 27: { Titulo = "Diferencias en Remision" } break;
-					case 29: { Titulo = "Diferencias en Remision" } break;
+					case 27: { Titulo = "SKU Cambiado" } break;
+					case 29: { Titulo = "SKU Faltante" } break;
 					case 30: { Titulo = "Entrega Parcial" } break;
-					case 40: { Titulo = "Siniestro Parcial" } break;
+					case 40: { Titulo = "Siniestro Pacial" } break;
 					case 39: { Titulo = "Siniestro Total" } break;
 				}
 
@@ -371,84 +364,83 @@
 
 				<% /* HA ID: 2 FIN */ %>
 
-				$.ajax({
-   				 	method: "POST",
-  				  	url: "/pz/wms/Incidencias/Incidencias_Ajax2.asp",
- 	   				data: { 
-						SKUCambiado:1,
-						Ins_ID:<%=Ins_ID%>,
-						InsT_ID:$('.InsT_IDPadre').val(),
-						InsO_ID:$('#cboInsO_ID').val(),
-						TA_ID:<%=TA_ID%>,
-						TA_Folio:$('.TA_Folio').val(),
-						Ins_Usu_Recibe:Asignar,
-						Ins_Descripcion:encodeURIComponent($('.Descripcion').val()),
-						Ins_Usu_Reporta: $('#IDUsuario').val(),
-						//  Prov_ID: $('#cboProv').val(),
-						Tarea:26
-					},
-    				cache: false,
-					//async: false    SE OCUPA PARA EVITAR REPETICIONES DE INSERCIONES 
-					success: function(data){
-						var resp = JSON.parse(data)
+		$.ajax({
+   				 method: "POST",
+  				  url: "/pz/wms/Incidencias/Incidencias_Ajax2.asp",
+ 	   data: { 
+   		   				   SKUCambiado:1,
+	 					   Ins_ID:<%=Ins_ID%>,
+	   					   InsT_ID:$('.InsT_IDPadre').val(),
+						   InsO_ID:$('#cboInsO_ID').val(),
+   	   					   TA_ID:<%=TA_ID%>,
+						   TA_Folio:$('.TA_Folio').val(),
+		   					Ins_Usu_Recibe:Asignar,
+						   Ins_Descripcion:encodeURIComponent($('.Descripcion').val()),
+						   Ins_Usu_Reporta: $('#IDUsuario').val(),
+		   					//  Prov_ID: $('#cboProv').val(),
+						   Tarea:26
+		},
+    cache: false,
+	//async: false    SE OCUPA PARA EVITAR REPETICIONES DE INSERCIONES 
+    success: function(data){
+		var resp = JSON.parse(data)
 
-						console.log("resp:", resp)
+							console.log("resp:", resp)
 
-						var intErrorNumero = resp.Error.Numero;
-						var strErrorDescripcion = resp.Error.Descripcion;
-						var intIns_ID = resp.Registro.Ins_ID;
-						var intTA_ID = resp.Registro.TA_ID;
+							var intErrorNumero = resp.Error.Numero;
+							var strErrorDescripcion = resp.Error.Descripcion;
+							var intIns_ID = resp.Registro.Ins_ID;
+							var intTA_ID = resp.Registro.TA_ID;
 
-						if( intErrorNumero == 0 ){
+							if( intErrorNumero == 0 ){
 
-						<% /* HA ID: 2 INI Insertar o Actualizar Series */ %>
+							<% /* HA ID: 2 INI Insertar o Actualizar Series */ %>
 
-							if( InsT_ID == 27 /* SKU Cambiado */ || InsT_ID == 29 /* SKU Faltante */ 
-								|| InsT_ID == 30 /* Entregas Parciales */ || InsT_ID == 40 /* Siniestros Parciales */ ){
+								if( InsT_ID == 27 /* SKU Cambiado */ || InsT_ID == 29 /* SKU Faltante */ 
+									|| InsT_ID == 30 /* Entregas Parciales */ || InsT_ID == 40 /* Siniestros Parciales */ ){
 
-								Serie.Listado.Seleccion.Guardar({
-										Ins_ID: intIns_ID
-										, TA_ID: intTA_ID
-										, IDUsuario: $("#IDUsuario").val()
-									}
-									, function(){
-										Avisa("success", "Aviso", strErrorDescripcion);
-										$("#divPadre").show()
-										$("#mdlIncidencias").modal('hide').remove();
+									Serie.Listado.Seleccion.Guardar({
+											Ins_ID: intIns_ID
+											, TA_ID: intTA_ID
+											, IDUsuario: $("#IDUsuario").val()
+										}
+										, function(){
+											Avisa("success", "Aviso", strErrorDescripcion);
+											$("#divPadre").show()
+											$("#mdlIncidencias").modal('hide').remove();
 
-										var Params = "?IDUsuario="+$('#IDUsuario').val()
-										
-										$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
-									}
-								);
+											var Params = "?IDUsuario="+$('#IDUsuario').val()
+											
+											$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
+										}
+									);
+								} else {
+									
+									Avisa("success", "Aviso", strErrorDescripcion);
+									$("#divPadre").show()
+									$("#mdlIncidencias").modal('hide').remove();
 
-							} else {
-								
-								Avisa("success", "Aviso", strErrorDescripcion);
-								$("#divPadre").show()
-								$("#mdlIncidencias").modal('hide').remove();
+									var Params = "?IDUsuario="+$('#IDUsuario').val()
+									
+									$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
+								}
 
-								var Params = "?IDUsuario="+$('#IDUsuario').val()
-								
-								$('#Contenido').load("/pz/wms/Incidencias/CTL_Incidencias.asp" + Params)
-							}
-
-						<% /* HA ID: 2 FIN */ %>
-  	   					} else {
-							$('#divValidaCampos').show()
-							$('#divValidaCampos').html("<font color='#FF0000'>* El folio no pertenece a la tienda</font>")
-						}
-					}
-				});	
-
-			} else {
+							<% /* HA ID: 2 FIN */ %>
+  	    }else{
+		$('#divValidaCampos').show()
+		$('#divValidaCampos').html("<font color='#FF0000'>* El folio no pertenece a la tienda</font>")
+		}
+	}
+		});	
+		}else{
 				$('#divValidaCampos').show()
 				$('#divValidaCampos').html("<font color='#FF0000'>* Los campos asignar a, t&iacute;tulo, asunto, descripci&oacute;n y folio son requeridos</font>")	
-			}
-					
 		}
-						
-	}
+					
+				}
+			
+			
+		}
 </script>
 
 <% /* HA ID: 2 INI Scripts de carga productos y series */ %>
@@ -484,11 +476,9 @@
 			});
 		}
 <%
-	if( Ins_ID > -1){
+	if( Ins_ID > -1 ){
 %>
-		if( bolVerPro ){
-			ProductoListadoCargar();
-		}
+		ProductoListadoCargar();
 <%
 	}
 %>
@@ -500,7 +490,7 @@
 		var strValor = $("#inpInsTA_Folio").val().trim();
 
 		var arrVerSerie = [
-			  27 /* Diferencias en Remision */
+			  27 /* SKU Cambiado */
 			, 29 /* SKU Faltante */
 			, 30 /* Entregas Parciales */
 			, 40 /* Siniestros Parciales */

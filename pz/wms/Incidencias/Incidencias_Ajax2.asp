@@ -7,7 +7,7 @@ var Tarea = Parametro("Tarea",-1)
     var InsO_ID = Parametro("InsO_ID",-1)
 	var ID_Unico = Parametro("ID_Unico",-1)
 	var InsO_ID = Parametro("InsO_ID",-1)
-	var Ins_ID = Parametro("Ins_ID",-1) 
+	var Ins_ID = Parametro("Ins_ID",-1)
     var Chkdo = Parametro("Chkdo",0)
 	var InsCm_Observacion = decodeURIComponent(Parametro("InsCm_Observacion",""))
 	var sResultado = ""
@@ -209,12 +209,14 @@ switch( parseInt( Tarea ) ){
 				var Asunto = "SKU Faltante  - "+TA_Folio
 			}
 
+			var Titulo = "";
+					
 			switch( parseInt(InsT_ID) ){
-				case 27: { Asunto = "SKU Cambiado - " + TA_Folio } break;
-				case 29: { Asunto = "SKU Faltante - " + TA_Folio } break;
-				case 30: { Asunto = "Entrega Parcial - " + TA_Folio } break;
-				case 40: { Asunto = "Siniestro Pacial - " + TA_Folio } break;
-				case 39: { Asunto = "Siniestro Total - " + TA_Folio } break;
+				case 27: { Titulo = "SKU Cambiado - " + TA_Folio } break;
+				case 29: { Titulo = "SKU Faltante - " + TA_Folio } break;
+				case 30: { Titulo = "Entrega Parcial - " + TA_Folio } break;
+				case 40: { Titulo = "Siniestro Pacial - " + TA_Folio } break;
+				case 39: { Titulo = "Siniestro Total - " + TA_Folio } break;
 			}
 					
 			var Ins_ID = SiguienteID("Ins_ID","Incidencia","",0)

@@ -1,0 +1,312 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!--#include virtual="/Includes/iqon.asp" -->
+<%
+    var cxnTipo = 0
+    var Aud_ID = Parametro("Aud_ID", -1)
+    var PT_ID = Parametro("PT_ID", -1)
+    var TPT_ID = Parametro("TPT_ID", 1)	
+    
+    var intAudU_Veces = 0
+    var intAudU_CodigoBarras = 0
+    var strPro_SKU = ""
+    var strPro_Nombre = ""
+    var strPT_LPN = ""
+    var strUbi_Nombre = ""
+    var strCli_Nombre = ""
+    var intAudU_ConteoInterno = ""
+    var dateFecha = ""
+
+    var strUsu_Nombre = ""
+    var strTPA_Nombre = ""
+
+    var urlBaseTemplate = "/Template/inspina/"
+    
+    var sqlLpn = "EXEC [dbo].[SPR_Auditorias_Pallet] "
+	  + "@Opcion = 1900 "
+	+ ", @Aud_ID = " + Aud_ID + " "
+	+ ", @PT_ID = " + PT_ID + " "
+
+    var rsAudPap = AbreTabla(sqlLpn, 1, cxnTipo)
+
+    var i = 0
+
+    if( !(rsAudPap.EOF) ){
+
+        intAudU_Veces = rsAudPap("AudU_Veces").Value
+        intAudU_CodigoBarras = rsAudPap("AudU_CodigoBarras").Value
+        strPro_SKU = rsAudPap("Pro_SKU").Value
+        strPro_Nombre = rsAudPap("Pro_Nombre").Value
+        strPT_LPN = rsAudPap("PT_LPN").Value
+        strUbi_Nombre = rsAudPap("Ubi_Nombre").Value
+        intAudU_ConteoInterno = rsAudPap("AudU_ConteoInterno").Value
+        
+        strCli_Nombre = rsAudPap("Cli_Nombre").Value
+        dateFecha = rsAudPap("Fecha").Value
+
+        strUsu_Nombre = rsAudPap("Usu_Nombre").Value            
+        strTPA_Nombre = rsAudPap("TPA_Nombre").Value
+
+    }
+
+    rsAudPap.Close()
+%>
+
+
+
+<link href="<%= urlBaseTemplate %>css/bootstrap.min.css" rel="stylesheet">
+
+<style media="print">
+    @page {  size: auto;   /* auto is the initial value */ }
+    .page-break  { display:block; page-break-before:always; }
+    table, tr, td, h1, h2, h3, h4{ font-weight: bold !important; }
+</style>
+
+<center>
+    <table border="1" cellpadding="2" cellspacing="2" style="text-align:center; width: 1000px;">
+        <tr>
+            <td rowspan="2" colspan="2">
+                <img src="http://wms.lyde.com.mx/Img/wms/Logo005.png" title="Lyde" style="width: 100px; height: 100px;"/>
+            </td>
+            <td bgcolor="silver" colspan="8">
+                <strong>Cliente</strong>
+            </td>
+            <td bgcolor="silver" colspan="2">
+                <strong>Fecha</strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <h1><strong><%= strCli_Nombre %></strong></h1>
+            </td>
+            <td colspan="2">
+               <h3><strong><%= dateFecha %></strong></h3>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="silver" colspan="2">
+                <strong>Papeleta</strong>
+            </td>
+            <td bgcolor="silver" colspan="1">
+                <strong>Visita</strong>
+            </td>
+            <td bgcolor="silver" colspan="2">
+                <strong>Tipo Conteo</strong>
+            </td>
+            <td bgcolor="silver"  colspan="7">
+                <strong>Ubicaci&oacute;n</strong>
+            </td>
+            
+        </tr>
+        <tr>
+            <td  colspan="2">
+                <strong><svg id="cbPapeleta">
+
+                </svg></strong>
+            </td>
+            <td  colspan="1">
+                <h1><strong><%= intAudU_Veces %></strong></h1>
+            </td>
+            <td  colspan="2">
+                <h4><strong><%= strTPA_Nombre %></strong></h4>
+            </td>
+           <td  colspan="7">
+                <strong><svg id="cbUbicacion">
+
+                </svg></strong>
+                <br>
+                <%= strUbi_Nombre %>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="silver"  colspan="7">
+                <strong>LPN</strong>
+            </td>
+            <td bgcolor="silver" colspan="5">
+                <strong>SKU/Modelo</strong>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="7">
+                <strong><svg id="cbLPN">
+
+                </svg></strong>
+                <br>
+                <%= strPT_LPN %>
+            </td>
+      
+            
+             <td  colspan="5">
+                <h4><strong>
+                    <%= strPro_SKU %>
+                    <br>
+                    <%= strPro_Nombre %>
+                </strong></h4>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="silver" colspan="6">
+                <strong>Auditor Interno</strong>
+            </td>
+            <td bgcolor="silver" colspan="6">
+                <strong>Auditor Externo</strong>
+            </td>
+        </tr>
+        <tr>        
+            <td colspan="3" style="width: 20%; height: 80px;">
+                
+            </td>
+    
+            <td colspan="3" style="width: 20%; vertical-align: bottom; text-align: center;">
+                
+            </td>
+
+            <td colspan="3" style="width: 20%;">
+                
+            </td>
+    
+            <td colspan="3" style="width: 20%; vertical-align: bottom; text-align: center;">
+                
+            </td>
+        </tr>
+        <tr>
+            
+            <td bgcolor="silver" colspan="3">
+                <strong>Cantidad</strong>
+            </td>
+            <td bgcolor="silver" colspan="3">
+                <strong>Nombre y Firma</strong>
+            </td>
+           
+            <td bgcolor="silver" colspan="3">
+                <strong>Cantidad</strong>
+            </td>
+            <td bgcolor="silver" colspan="3">
+                <strong>Nombre y Firma</strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <hr style="border: dashed #000 1px;">
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="silver" colspan="6">
+                <strong>Auditor Interno</strong>
+            </td>
+            <td bgcolor="silver" colspan="6">
+                <strong>Auditor Externo</strong>
+            </td>
+        </tr>
+        <tr>        
+            <td colspan="3" style="width: 20%; height: 80px;">
+                
+            </td>
+    
+            <td colspan="3" style="width: 20%; vertical-align: bottom; text-align: center;">
+                
+            </td>
+
+            <td colspan="3" style="width: 20%;">
+                
+            </td>
+    
+            <td colspan="3" style="width: 20%; vertical-align: bottom; text-align: center;">
+                
+            </td>
+        </tr>
+        <tr>
+            
+            <td bgcolor="silver" colspan="3">
+                <strong>Cantidad</strong>
+            </td>
+            <td bgcolor="silver" colspan="3">
+                <strong>Nombre y Firma</strong>
+            </td>
+           
+            <td bgcolor="silver" colspan="3">
+                <strong>Cantidad</strong>
+            </td>
+            <td bgcolor="silver" colspan="3">
+                <strong>Nombre y Firma</strong>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="silver" colspan="4">
+                <strong>Papeleta</strong>
+            </td>
+            <td bgcolor="silver" colspan="3">
+                <strong>Informaci&oacute;n Auditor&iacute;a</strong>
+            </td>
+            <td bgcolor="silver" colspan="5">
+                <strong>Informaci&oacute;n Producto</strong>
+            </td>
+        </tr>
+         <tr>
+            <td colspan="4">
+                <strong>
+                    <svg id="cbPapeleta2">
+
+                    </svg>
+                </strong>
+            </td>
+            <td colspan="3" style="text-align: left; padding: 5px; font-size: 14px;">
+                Visita: <b><%= intAudU_Veces %></b>
+                <br>
+                Tipo de Aud: <b><%= strTPA_Nombre %></b>
+            </td>
+            <td colspan="5" style="text-align: left; padding: 5px; font-size: 14px;">
+                Producto: <b><%= strPro_SKU %></b>
+                <br>
+                Modelo: <b><%= strPro_Nombre %></b>
+                <br>
+                Pallet: <b><%= strPT_LPN %></b>
+                <br>
+                Ubicaci&oacute;n: <b><%= strUbi_Nombre %></b>
+            </td>
+        </tr>
+    </table>
+</center>
+<br>
+<script src="<%= urlBaseTemplate %>js/jquery-3.1.1.min.js"></script>
+<script src="<%= urlBaseTemplate %>js/plugins/JsBarcode/JsBarcode.all.min.js" charset="utf-8" ></script>
+
+<script type="application/javascript">
+    $(document).ready(function(e) {
+
+        JsBarcode("#cbPapeleta", "<%= intAudU_CodigoBarras %>", {
+            width: 3,
+            height: 50,
+            fontSize: 1,
+            displayValue: false,
+            font:"fantasy"
+        });
+        JsBarcode("#cbPapeleta2", "<%= intAudU_CodigoBarras %>", {
+            width: 3,
+            height: 50,
+            fontSize: 1,
+            displayValue: false,
+            font:"fantasy"
+        });
+        JsBarcode("#cbLPN", "<%= strPT_LPN %>", {
+            width: 3,
+            align:"center",
+            height: 50,
+            fontSize: 1,
+            displayValue: false,
+            font:"fantasy"
+        });
+        JsBarcode("#cbUbicacion", "<%= strUbi_Nombre %>", {
+            width: 3,
+            height: 50,
+            fontSize: 1,
+            displayValue: false,
+            font:"fantasy"
+        });
+       
+
+
+        //window.print();    
+    });
+</script>

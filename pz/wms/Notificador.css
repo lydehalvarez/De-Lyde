@@ -1,0 +1,39 @@
+
+
+#dvNotificador{
+	    border-bottom-style: none;	
+}
+
+.notCaja {
+	
+}
+
+.notCliente {
+	font-size: 24px;
+	line-height: 30px;
+}
+
+.notProveedor {
+	font-size: 24px;
+    float: left;
+	line-height: 26px;
+}
+
+.notFolioFac {
+   font-size: 30px;
+    float: left;
+    margin-left: 60px;
+    position: relative;
+    top: -10px;
+}
+
+.notFolioPago {
+    font-size: 25px;
+	float: right;
+    margin-left: 20px;
+    position: relative;
+    top: -5px;
+}
+
+
+

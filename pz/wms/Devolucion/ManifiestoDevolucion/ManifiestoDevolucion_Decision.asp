@@ -1,0 +1,121 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!--#include virtual="/Includes/iqon.asp" -->
+<%
+// HA ID: 1 2020-DIC-10 Devoulcion Decisión: Archivo Nuevo
+
+var urlBase = "/pz/wms/Devolucion/"
+var urlBaseTemplate = "/Template/inspina/";
+
+%>
+<link href="<%= urlBaseTemplate %>css/plugins/select2/select2.min.css" rel="stylesheet">
+<link href="<%= urlBaseTemplate %>css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+<!-- Select2 -->
+<script src="<%= urlBaseTemplate %>js/plugins/select2/select2.full.min.js"></script>
+<!-- Data picker -->
+<script src="<%= urlBaseTemplate %>js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<!-- Loading -->
+<script src="<%= urlBaseTemplate %>js/loading.js"></script>
+<!-- Lateral Flotante -->
+<script src="<%= urlBaseTemplate %>js/lateralflotante.js"></script>
+
+<!-- Librerias-->
+<script type="text/javascript" src="/pz/wms/Almacen/Cliente/js/Cliente.js"></script>
+<script type="text/javascript" src="/pz/wms/Devolucion/Proveedor/js/Proveedor.js"></script>
+<script type="text/javascript" src="/pz/wms/Devolucion/ManifiestoDevolucion/js/ManifiestoDevolucion.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        Proveedor.ComboCargar();
+        Cliente.ComboCargar();
+        ManifiestoDevolucion.DecisionListadoCargar();
+
+        $("#selProveedor").select2();
+        $("#selCliente").select2();
+
+        $('.date').datepicker({
+            todayBtn: "linked", 
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            endDate: '0d',
+        });
+
+    });
+    
+</script>
+
+<div id="wrapper">
+    <div class="wrapper wrapper-content">    
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Filtros de b&uacute;squeda</h5>
+                        <div class="ibox-tools">
+                            
+                            <button class="btn btn-success btn-sm" type="button" id="btnBuscar" onClick="ManifiestoDevolucion.DecisionListadoCargar()">
+                                <i class="fa fa-search"></i> Buscar
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row"> 
+                            <div class="col-sm-12 m-b-xs">        
+                                <div class="row">
+                                    <label class="col-sm-2 control-label" title="Transferencia/Orden de Venta">Tra. /Ord Vta.:</label>
+                                    <div class="col-sm-4 m-b-xs">
+                                        <input type="text" id="inpTAOVFolio" class="form-control" placeholder="Folio"
+                                         autocomplete="off">
+                                    </div>
+                                    <label class="col-sm-2 control-label">Transportista</label>    
+                                    <div class="col-sm-4 m-b-xs">
+                                        <select id="selProveedor" class="form-control">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Fecha Inicial:</label>    
+                                    <div class="col-sm-4 m-b-xs">
+                                        <input type="text" id="inpManDFechaInicial" class="form-control date" placeholder="mm/dd/yyyy"
+                                        autocomplete="off" readonly>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Fecha Final:</label>    
+                                    <div class="col-sm-4 m-b-xs">
+                                        <input type="text" id="inpManDFechaFinal" class="form-control date" placeholder="mm/dd/yyyy"
+                                        autocomplete="off" readonly>
+                                    </div>   
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Manifiesto</label>
+                                    <div class="col-sm-4 m-b-xs">
+                                        <input type="text" id="inpManDFolio" class="form-control" placeholder="Folio"
+                                        autocomplete="off">
+                                    </div>
+                                    <label class="col-sm-2 control-label">Cliente</label>    
+                                    <div class="col-sm-4 m-b-xs">
+                                        <select id="selCliente" class="form-control">
+                                            
+                                        </select>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divManDListado">
+                    
+                </div>
+            </div>
+            <div class="col-sm-3" id="divLateral" >
+                
+            </div>
+        </div>
+    </div>
+</div>
+

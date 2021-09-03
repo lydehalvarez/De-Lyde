@@ -1,0 +1,36 @@
+
+
+#dvNotificadorComprador{
+	    border-bottom-style: none;	
+}
+
+.notCaja {
+	
+}
+
+.notCliente {
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.notProveedor {
+	font-size: 20px;
+    float: left;
+	line-height: 24px;
+}
+
+
+.notComprador {
+	font-size: 20px;
+    float: left;
+	line-height: 22px;
+}
+
+
+.notFolioFac {
+    float: left;
+    margin-left: 80px;
+    position: relative;
+    top: -23px;
+}
+

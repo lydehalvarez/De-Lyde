@@ -1,0 +1,1 @@
+$( "#frmDatos" ).addClass( "form-horizontal" );
