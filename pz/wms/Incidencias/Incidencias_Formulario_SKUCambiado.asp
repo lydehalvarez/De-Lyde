@@ -344,7 +344,7 @@
 
 				<% /* HA ID: 2 INI se agrega paramentros para inserción */ %>
 
-				var InsT_ID = $('.InsT_IDPadre').val(); 
+				var InsT_ID = $('.InsT_IDPadre').val();
 
 				var Titulo = "";
 				
