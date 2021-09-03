@@ -353,7 +353,7 @@
 					case 29: { Titulo = "Diferencias en Remision" } break;
 					case 30: { Titulo = "Entrega Parcial" } break;
 					case 40: { Titulo = "Siniestro Pacial" } break;
-					case 39: { Titulo = "Siniestro Total" } break; /**/ /**/
+					case 39: { Titulo = "Siniestro Total" } break;
 				}
 
 				if( InsT_ID == 27 /* SKU Cambiado */ || InsT_ID == 29 /* SKU Faltante */ 
