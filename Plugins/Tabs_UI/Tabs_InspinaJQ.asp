@@ -1,2 +1,0 @@
-{Variable:sJQDeTabs}
-$("#TabsCont").show(); 
