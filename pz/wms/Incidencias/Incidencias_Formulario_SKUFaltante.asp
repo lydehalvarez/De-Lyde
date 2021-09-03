@@ -203,8 +203,8 @@
 					var Titulo = "";
 					
 					switch( parseInt(InsT_ID) ){
-						case 27: { Titulo = "SKU Cambiado" } break;
-						case 29: { Titulo = "SKU Faltante" } break;
+						case 27: { Titulo = "Diferencias en Remision" } break;
+						case 29: { Titulo = "Diferencias en Remision" } break;
 						case 30: { Titulo = "Entrega Parcial" } break;
 						case 40: { Titulo = "Siniestro Pacial" } break;
 						case 39: { Titulo = "Siniestro Total" } break;
@@ -316,13 +316,15 @@
 	}
 %>
 				if(Folio != ''  && Descripcion != '' && Asignar !=-1){
+					var InsT_ID = $('.InsT_IDPadre').val()
+					
 					$('#divValidaCampos').hide()
 
 					var Titulo = "";
 					
 					switch( parseInt(InsT_ID) ){
-						case 27: { Titulo = "SKU Cambiado" } break;
-						case 29: { Titulo = "SKU Faltante" } break;
+						case 27: { Titulo = "Diferencias en Remision" } break;
+						case 29: { Titulo = "Diferencias en Remision" } break;
 						case 30: { Titulo = "Entrega Parcial" } break;
 						case 40: { Titulo = "Siniestro Pacial" } break;
 						case 39: { Titulo = "Siniestro Total" } break;
@@ -490,7 +492,9 @@
 <%
 	if( Ins_ID > -1 ){
 %>
+	if( bolVerPro ){
 		ProductoListadoCargar();
+	}
 <%
 	}
 %>

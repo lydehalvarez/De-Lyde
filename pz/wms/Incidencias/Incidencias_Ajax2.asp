@@ -205,18 +205,12 @@ switch( parseInt( Tarea ) ){
 				var Asunto = "SKU Cambiado - "+TA_Folio 
 			}
 
-			if(InsT_ID==29){
-				var Asunto = "SKU Faltante  - "+TA_Folio
-			}
-
-			var Titulo = "";
-					
 			switch( parseInt(InsT_ID) ){
-				case 27: { Titulo = "SKU Cambiado - " + TA_Folio } break;
-				case 29: { Titulo = "SKU Faltante - " + TA_Folio } break;
-				case 30: { Titulo = "Entrega Parcial - " + TA_Folio } break;
-				case 40: { Titulo = "Siniestro Pacial - " + TA_Folio } break;
-				case 39: { Titulo = "Siniestro Total - " + TA_Folio } break;
+				case 27: { Asunto = "SKU Cambiado - " + TA_Folio } break;
+				case 29: { Asunto = "SKU Faltante - " + TA_Folio } break;
+				case 30: { Asunto = "Entrega Parcial - " + TA_Folio } break;
+				case 40: { Asunto = "Siniestro Pacial - " + TA_Folio } break;
+				case 39: { Asunto = "Siniestro Total - " + TA_Folio } break;
 			}
 					
 			var Ins_ID = SiguienteID("Ins_ID","Incidencia","",0)
