@@ -492,7 +492,7 @@
 <%
 	if( Ins_ID > -1 ){
 %>
-	if( bolVerPro ){
+	if( bolVerPro ){ 
 		ProductoListadoCargar();
 	}
 <%
