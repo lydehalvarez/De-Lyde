@@ -82,7 +82,8 @@
                        <div class="col-md-9">
 					   
 					   		<% /* HA ID: 2 se agrega identificador a input y se quita evento keydown */ %>
-                            <input id="inpInsTA_Folio" class="form-control TA_Folio" value = "" placeholder=""  style="width: 120px;float: left;"></input><strong><small>Escribe el folio y presiona enter</small></strong>
+                            <input id="inpInsTA_Folio" class="form-control TA_Folio" value = "" placeholder=""  style="width: 120px;float: left;"
+							<% if(Ins_ID > -1){ %> disabled <% } %> ></input><strong><small>Escribe el folio y presiona enter</small></strong>
                        </div>
 
                                      </div>
@@ -203,8 +204,8 @@
 					var Titulo = "";
 					
 					switch( parseInt(InsT_ID) ){
-						case 27: { Titulo = "SKU Cambiado" } break;
-						case 29: { Titulo = "SKU Faltante" } break;
+						case 27: { Titulo = "Diferencias en Remision" } break;
+						case 29: { Titulo = "Diferencias en Remision" } break;
 						case 30: { Titulo = "Entrega Parcial" } break;
 						case 40: { Titulo = "Siniestro Pacial" } break;
 						case 39: { Titulo = "Siniestro Total" } break;
@@ -316,13 +317,15 @@
 	}
 %>
 				if(Folio != ''  && Descripcion != '' && Asignar !=-1){
+					var InsT_ID = $('.InsT_IDPadre').val()
+
 					$('#divValidaCampos').hide()
 
 					var Titulo = "";
 					
 					switch( parseInt(InsT_ID) ){
-						case 27: { Titulo = "SKU Cambiado" } break;
-						case 29: { Titulo = "SKU Faltante" } break;
+						case 27: { Titulo = "Diferencias en Remision" } break;
+						case 29: { Titulo = "Diferencias en Remision" } break;
 						case 30: { Titulo = "Entrega Parcial" } break;
 						case 40: { Titulo = "Siniestro Pacial" } break;
 						case 39: { Titulo = "Siniestro Total" } break;
@@ -490,7 +493,9 @@
 <%
 	if( Ins_ID > -1 ){
 %>
-		ProductoListadoCargar();
+		if( bolVerPro ){
+			ProductoListadoCargar();
+		}
 <%
 	}
 %>
