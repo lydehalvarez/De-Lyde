@@ -318,7 +318,11 @@
 %>
 				if(Folio != ''  && Descripcion != '' && Asignar !=-1){
 					var InsT_ID = $('.InsT_IDPadre').val()
+<<<<<<< HEAD
 
+=======
+					
+>>>>>>> refs/remotes/origin/master
 					$('#divValidaCampos').hide()
 
 					var Titulo = "";
@@ -493,9 +497,15 @@
 <%
 	if( Ins_ID > -1 ){
 %>
+<<<<<<< HEAD
 		if( bolVerPro ){
 			ProductoListadoCargar();
 		}
+=======
+	if( bolVerPro ){ 
+		ProductoListadoCargar();
+	}
+>>>>>>> refs/remotes/origin/master
 <%
 	}
 %>

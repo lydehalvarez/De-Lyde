@@ -195,11 +195,18 @@
 
 				$('#divValidaCampos').hide()
 
+				var IntT_ID = $('.InsT_IDPadre').val()
+
 				var Titulo = "";
 					
 				switch( parseInt(InsT_ID) ){
+<<<<<<< HEAD
 					case 27: { Titulo = "Diferencia en Remision" } break;
 					case 29: { Titulo = "Diferencia en Remision" } break;
+=======
+					case 27: { Titulo = "Diferencias en Remision" } break;
+					case 29: { Titulo = "Diferencias en Remision" } break;
+>>>>>>> refs/remotes/origin/master
 					case 30: { Titulo = "Entrega Parcial" } break;
 					case 40: { Titulo = "Siniestro Pacial" } break;
 					case 39: { Titulo = "Siniestro Total" } break;
@@ -348,11 +355,18 @@
 
 				<% /* HA ID: 2 INI se agrega paramentros para inserción */ %>
 
+				var InsT_ID = $('.InsT_IDPadre').val();
+
 				var Titulo = "";
 				
 				switch( parseInt(InsT_ID) ){
+<<<<<<< HEAD
 					case 27: { Titulo = "Diferencia en Remision" } break;
 					case 29: { Titulo = "Diferencia en Remision" } break;
+=======
+					case 27: { Titulo = "Diferencias en Remision" } break;
+					case 29: { Titulo = "Diferencias en Remision" } break;
+>>>>>>> refs/remotes/origin/master
 					case 30: { Titulo = "Entrega Parcial" } break;
 					case 40: { Titulo = "Siniestro Pacial" } break;
 					case 39: { Titulo = "Siniestro Total" } break;
@@ -484,7 +498,11 @@
 <%
 	if( Ins_ID > -1 ){
 %>
+<<<<<<< HEAD
 		if( bolVerPro ){
+=======
+		if( bolVerPro ) {
+>>>>>>> refs/remotes/origin/master
 			ProductoListadoCargar();
 		}
 <%

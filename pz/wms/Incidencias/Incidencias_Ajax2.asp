@@ -205,11 +205,14 @@ switch( parseInt( Tarea ) ){
 				var Asunto = "SKU Cambiado - "+TA_Folio 
 			}
 
+<<<<<<< HEAD
 			if(InsT_ID==29){
 				var Asunto = "SKU Faltante  - "+TA_Folio
 			}
 
 			
+=======
+>>>>>>> refs/remotes/origin/master
 			switch( parseInt(InsT_ID) ){
 				case 27: { Asunto = "SKU Cambiado - " + TA_Folio } break;
 				case 29: { Asunto = "SKU Faltante - " + TA_Folio } break;
